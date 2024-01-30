@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jewellery Shop Management</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora&family=Poppins:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/fontawesome.min.css"> -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<script>
+    // Function to add a new item to the bill
+function addItem() {
+    const itemName = document.getElementById('itemName').value;
+    const itemPrice = parseFloat(document.getElementById('itemPrice').value);
+
+    if (itemName && !isNaN(itemPrice) && itemPrice > 0) {
+        const billDetails = document.getElementById('bill-details');
+        const newItem = document.createElement('div');
+        newItem.classList.add('bill-item');
+        newItem.innerHTML = `<span>${itemName}</span><span>₹${itemPrice.toFixed(2)}</span>`;
+        billDetails.appendChild(newItem);
+
+        // Update the total amount
+        updateTotal();
+    } else {
+        alert('Please enter valid item details.');
+    }
+}
+
+// Function to update the total amount in the bill
+function updateTotal() {
+    const billItems = document.querySelectorAll('.bill-item span:nth-child(2)');
+    let total = 0;
+
+    billItems.forEach(item => {
+        total += parseFloat(item.textContent.replace('₹', ''));
+    });
+
+    const billTotal = document.getElementById('billTotal').lastElementChild;
+    billTotal.textContent = `₹${total.toFixed(2)}`;
+}
+</script>
+<body>
+    <section class="header">
+        <nav>
+            <a href="index.html"><img src="/photo/logo.jpeg" class="rounded"></a>
+            <div class="nav-links" id="navlinks">
+                <i class="fa fa-times" onclick="hideMenu()" ></i>
+                <ul>
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="about.html">ABOUT</a></li>
+                    <li><a href="products.html">PRODUCTS</a></li>
+                    <li><a href="">TESTIMONIALS</a></li>
+                    <li><a href="contact.html">CONTACT US</a></li>
+                </ul>
+            </div>
+            <i class="fa fa-bars" onclick="showMenu()" ></i>
+        </nav>
+        <div class="text-box">
+            <h1>Oola Jewellers</h1>
+            <p>"Adorn Yourself in Elegance: Discover Timeless Beauty in Every Piece"</p>
+            <a href="" class="hero-btn">Visit us to know more</a>
+        </div>
+    </section>
+
+    <!-- products -->
+    <section class="products">
+        <h1>Elevate Your Style: Find Your Perfect Piece In Our Diverse Jewellery Section.</h1>
+            <p>Discover the epitome of elegance and craftsmanship in our stunning collection of handcrafted jewelry. Each piece is meticulously designed to capture the essence of timeless beauty and sophistication. From exquisite diamonds to lustrous pearls, our diverse range offers the perfect adornment for every occasion. Explore our curated selection and indulge in the artistry of fine jewelry at Oola Jewellers.</p>
+        <div class="row">
+            <div class="product-col">
+                <h3>Eternal Elegance Diamond Necklace</h3>
+                <img src="/photo/necklace.png" alt="">
+                <p>₹1,27,000</p>
+            </div>
+            <div class="product-col">
+                <h3>Enchanting Rose Gold Bracelet</h3>
+                <img src="/photo/bracelet.jpg" alt="">
+                <p>₹45,000</p>
+            </div>
+            <div class="product-col">
+                <h3>Vintage-Inspired Emerald Ring</h3>
+                <img src="/photo/ring.jpg" alt="">
+                <p>₹75,000</p>
+            </div>
+            <div class="product-col">
+                <h3>Classic Pearl Drop Earrings</h3>
+                <img src="/photo/earrings.webp" alt="">
+                <p>₹30,000</p>
+            </div>
+            <div class="product-col">
+                <h3>Sun-Kissed Golden Chain Anklet</h3>
+                <img src="/photo/anklet.png" alt="">
+                <p>₹15,000</p>
+            </div>
+            <div class="product-col">
+                <h3>Mystic Moonstone Nose Ring</h3>
+                <img src="/photo/nosering.jpg" alt="">
+                <p>₹7,000</p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Add a new section for the bill -->
+<section class="bill">
+    <h2>Bill Details</h2>
+    <div class="bill-details" id="bill-details">
+        <!-- The bill details will be dynamically added here -->
+    </div>
+
+    <!-- Form to add new items -->
+    <form id="addItemForm">
+        <label for="itemName">Item Name:</label>
+        <input type="text" id="itemName" placeholder="Enter item name" required>
+
+        <label for="itemPrice">Item Price (₹):</label>
+        <input type="number" id="itemPrice" placeholder="Enter item price" required>
+
+        <button type="button" onclick="addItem()">Add Item</button>
+    </form>
+
+    <!-- Total amount -->
+    <div class="bill-total" id="billTotal">
+        <span>Total</span>
+        <span>₹0</span>
+    </div>
+</section>
+
+<section class="testimonials">
+    <h1>What Our Customers Say About Us</h1>
+
+    <div class="row">
+        <div class="testimonial-col">
+            <img src="/photo/golu.jpg" alt="">
+            <div>
+                <p>
+                    "I recently purchased a beautiful necklace from Oola Jewellers, and I couldn't be happier with my purchase.
+                    The attention to detail and craftsmanship is truly impressive. Oola Jewellers offers timeless pieces that
+                    add elegance to any occasion. I highly recommend their collection!"
+                </p>
+                <h3>Shraddha Kapoor</h3>
+                <i class="fa fa-heart"></i>
+                <i class="fa fa-heart"></i>
+                <i class="fa fa-heart"></i>
+                <i class="fa fa-heart"></i>
+                <i class="fa fa-heart"></i>
+            </div>
+        </div>
+        <div class="testimonial-col">
+            <img src="/photo/mrunu2.jpg" alt="">
+            <div>
+                <p>
+                    "The Enchanting Rose Gold Bracelet I bought from Oola Jewellers exceeded my expectations. The design is
+                    unique, and the quality is exceptional. The team at Oola Jewellers provided excellent customer service,
+                    making my shopping experience delightful. I look forward to adding more pieces to my collection."
+                </p>
+                <h3>Mrunal Panchal</h3>
+                <i class="fa fa-heart"></i>
+                <i class="fa fa-heart"></i>
+                <i class="fa fa-heart"></i>
+                <i class="fa fa-heart"></i>
+                <i class="fa fa-heart-o"></i>
+            </div>
+        </div>
+        <div class="testimonial-col">
+            <img src="/photo/aashi.jpg" alt="">
+            <div>
+                <p>
+                    "Oola Jewellers is my go-to destination for exquisite jewelry. The Mystic Moonstone Nose Ring I purchased
+                    is a true work of art. The selection is vast, the quality is top-notch, and the staff is always friendly
+                    and knowledgeable."
+                </p>
+                <h3>Aashi Khanna</h3>
+                <i class="fa fa-heart"></i>
+                <i class="fa fa-heart"></i>
+                <i class="fa fa-heart"></i>
+                <i class="fa fa-heart"></i>
+                <i class="fa fa-heart-o"></i>
+            </div>
+        </div>
+        <div class="testimonial-col">
+            <img src="/photo/aashna.webp" alt="">
+            <div>
+                <p>
+                    "Shopping at Oola Jewellers is a delightful experience from heartt to finish. The Classic Pearl Drop Earrings
+                    I purchased were packaged beautifully, and the attention to detail is evident. I'm a satisfied and repeat customer!"
+                </p>
+                <h3>Aashna Hegde</h3>
+                <i class="fa fa-heart"></i>
+                <i class="fa fa-heart"></i>
+                <i class="fa fa-heart"></i>
+                <i class="fa fa-heart"></i>
+                <i class="fa fa-heart"></i>
+            </div>
+        </div>
+        <div class="testimonial-col">
+            <img src="/photo/kritika.jpg" alt="">
+            <div>
+                <p>
+                    "Oola Jewellers' commitment to quality and design is unmatched. The Eternal Elegance Diamond Necklace I
+                    purchased for my wife's birthday received endless compliments. It's a symbol of love and sophistication,
+                    and I couldn't be happier with the purchase. Thank you, Oola Jewellers, for making every occasion special."
+                </p>
+                <h3>Kritika Khuranna</h3>
+                <i class="fa fa-heart"></i>
+                <i class="fa fa-heart"></i>
+                <i class="fa fa-heart"></i>
+                <i class="fa fa-heart"></i>
+                <i class="fa fa-heart-o"></i>
+            </div>
+        </div>
+
+        <div class="testimonial-col">
+            <img src="/photo/prableen.jpg" alt="">
+            <div>
+                <p>
+                    "I recently visited Oola Jewellers for a special gift. The staff was incredibly helpful in guiding me
+                    to the perfect piece, and the recipient was overjoyed with the Sun-Kissed Golden Chain Anklet. Oola Jewellers
+                    has become my go-to for memorable and meaningful gifts."
+                </p>
+                <h3>Prableen Kaur</h3>
+                <i class="fa fa-heart"></i>
+                <i class="fa fa-heart"></i>
+                <i class="fa fa-heart"></i>
+                <i class="fa fa-heart"></i>
+                <i class="fa fa-heart-o"></i>
+            </div>
+        </div>
+        
+    </div>
+</section>
+<!-- call to action -->
+<section class="cta">
+    <h1>Your Queries, Our Priority: Reach Out Today!</h1>
+    <a href="" class="hero-btn">CONTACT US</a>
+</section>
+
+<!-- footer -->
+<section class="footer">
+    <h4>About Us</h4>
+    <p>           n        
+        Welcome to Oola Jewellers, where timeless elegance meets exquisite craftsmanship. Our journey began with a passion for curating jewellery that transcends trends and becomes a cherished part of your story.
+        <br>
+        Our Story <br>
+        In the heart of Mandi (H.P.), Oola Jewellers was established with a singular vision: to provide a haven for those who appreciate the artistry and beauty of fine jewellery. Our founders, Akankshi and Arundhati, envisioned a space where each piece is not just an accessory but a work of art that reflects the wearer's individuality.
+        <br>
+        Our Philosophy <br>
+        At Oola Jewellers, we believe in the power of jewellery to evoke emotions, celebrate milestones, and express personal style. Every piece in our collection is thoughtfully curated, reflecting a harmonious blend of traditional craftsmanship and contemporary design.
+        <br>
+        Craftsmanship and Quality <br>
+        We take pride in the quality of our jewellery, ensuring that each piece meets the highest standards. Our team of skilled artisans meticulously crafts each item, using only the finest materials to create enduring pieces that stand the test of time.
+        <br>
+        Customer Experience <br>
+        Beyond the jewellery, we are dedicated to provide an unparalleled customer experience. From the moment you step into our showroom to the joy of unboxing your carefully wrapped purchase, we aim to make every interaction memorable.
+        <br>
+        Our Commitment <br>
+        At Oola Jewellers, we are committed to sustainability and ethical practices. We source our materials responsibly and prioritize transparency in every aspect of our business. Your trust in us is our most valued asset.
+        <br>
+        Join Our Journey <br>
+        Whether you're seeking a statement piece for a special occasion or a daily reminder of elegance, we invite you to explore our collection. Join us on this journey of beauty, craftsmanship, and celebration.
+        <br>Thank you for choosing Oola Jewellers. We look forward to being a part of your stories and creating lasting memories together.
+        </p>
+
+        <br><br>
+        <div class="icons">
+            <i class="fa fa-facebook"></i>
+            <i class="fa fa-twitter"></i>
+            <i class="fa fa-instagram"></i>
+            <i class="fa fa-linkedin"></i>
+        </div>
+
+</section>
+
+    <!-- javascript for toggle menu-->
+    <script>
+        var navlinks=document.getElementById("navlinks");
+        function showMenu(){
+            navlinks.style.right="0";
+        }
+        function hideMenu(){
+            navlinks.style.right="-200px";
+        }
+    </script>
+
+
+</body>
+</html>
